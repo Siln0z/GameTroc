@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}GameTroc
+			{% endblock %}
+		</title>
+
+		{% block stylesheets %}
+			<!-- UIkit CSS -->
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.18/dist/css/uikit.min.css"/>
+			<link
+			rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
+			<!-- CSS PERSO -->
+			<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+		{% endblock %}
+
+		{% block javascripts %}
+			<!-- UIkit JS -->
+			<script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit-icons.min.js"></script>
+			<!-- TinyMCE -->
+			<script src="https://cdn.tiny.cloud/1/7qmdxp6fv03ugwou5gi0vqbwvb9aydok75u80qqew7mb09ik/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+		{% endblock %}
+	</head>
+	<body>
+		<div id="banniere">
+			<img id="banniereimg" src="{{ asset('img/banniere.jpg') }}" alt="banniere">
+			<a href="">
+				<nav id="navbar" class="uk-navbar-container" uk-navbar></a>
+			</div>
+			<div class="uk-navbar">
+				<div class="uk-navbar-left">
+					<h2>GameTroc - l'échange ludique</h2>
+				</div>
+
+
+				<div class="uk-navbar-right">
+					<ul class="uk-navbar-nav">
+						<li class="uk-navbar-item">
+							<a href="{{path('home')}}">Accueil</a>
+						</li>
+						{% if is_granted('ROLE_ADMIN') %}
+							<li class="uk-navbar-item">
+								<a href="{{ path('admin') }}">Admin</a>
+							</li>
+						{% endif %}
+						<li class="uk-navbar-item">
+							<a href="{{path('annonces')}}">Annonces</a>
+						</li>
+						{% if app.user %}
+							<li class="uk-navbar-item">
+								<a href="">Bonjour
+									{{ app.user.prenom }}
+									!</a>
+							</li>
+							<li class="uk-navbar-item">
+								<a href="{{path('app_logout')}}">Déconnexion</a>
+							</li>
+						{% else %}
+							<li class="uk-navbar-item">
+								<a href="{{path('app_register')}}">Inscription</a>
+							</li>
+							<li class="uk-navbar-item">
+								<a href="{{path('app_login')}}">Connexion</a>
+							</li>
+						{% endif %}
+
+					</ul>
+				</div>
+			</div>
+		</div>
+		{% block body %}{% endblock %}
+		{% block footer %}
+			<footer class="uk-text-center uk-align-center">
+				<p>© 2021 Elan</p>
+			</footer>
+		{% endblock %}
+		<script>
+			tinymce.init({
+selector: '.mytextarea',
+max_height: 400,
+max_width: 2000,
+min_height: 400,
+min_width: 2000
+});
+		</script>
+	</body>
+</html>

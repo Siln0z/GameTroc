@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+	<h1>Ajouter une annonce d'échange</h1>
+	{{ form_start(formAnnonce, {'attr':{'novalidate':'novalidate'}}) }}
+	{{ form_label(formAnnonce.titre) }}
+	{{ form_widget(formAnnonce.titre) }}
+	{{ form_label(formAnnonce.texte) }}
+	{{ form_widget(formAnnonce.texte) }}
+	{{ form_end(formAnnonce) }}
+{% endblock %}

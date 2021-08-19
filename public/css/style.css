@@ -1,0 +1,39 @@
+*{
+    box-sizing: border-box;
+}
+
+h1, h3 {
+    color:rgb(75, 77, 80);
+    padding:1em;
+}
+body{
+    max-width: 1390px;
+    margin: 0 auto;
+}
+
+
+main{
+    /* min-height: 80vh;  */
+    background-color:rgb(222, 221, 247);
+}
+
+#navbar{
+    background-color:rgb(51, 112, 211);
+}
+
+#navbar a{
+    color:rgb(231, 227, 227);
+
+}
+.uk-navbar-dropdown{
+    background-color: rgb(51, 112, 211);
+ }
+#banniere{
+text-align: center;
+
+}
+
+
+
+
+

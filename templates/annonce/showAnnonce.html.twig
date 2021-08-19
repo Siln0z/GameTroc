@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+	<h1>{{ annonce.titre}}</h1>
+	<div><img src="{{ asset('upload/'~ annonce.photo) }}" alt="photo du jeu" width="200" height="200">
+		<p>{{ annonce.texte | raw}}</p>
+		<p>{{ annonce.user }}</p>
+	</div>
+
+
+{% endblock %}

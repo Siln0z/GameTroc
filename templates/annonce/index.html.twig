@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GameTroc - Annonces
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des annonces d'échange</h1>
+	<a href="{{ path('add_annonce') }}">AJOUTER</a>
+	{% for annonce in annonces %}
+		<a href="{{ path('show_annonce',{id:annonce.id} ) }}">
+			<div class="uk-card uk-card-hover">
+				<img src="{{ asset('upload/'~ annonce.photo) }}" alt="photo du jeu" width="100" height="100">
+				<p>{{ annonce.titre }}</p>
+				<p>Postée par
+					{{ annonce.user }}</p>
+				{# {{ annonce.texte | raw}} #}
+
+
+			</div>
+		</a>
+	{% endfor %}
+{% endblock %}
