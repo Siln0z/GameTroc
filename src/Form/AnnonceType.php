@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Annonce;
+use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;

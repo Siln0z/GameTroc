@@ -19,6 +19,10 @@ class AnnonceRepository extends ServiceEntityRepository
         parent::__construct($registry, Annonce::class);
     }
 
+    // public function findAll()
+    // {
+    //     return $this->findBy([], array('id' => 'ASC'));
+    // }
     // /**
     //  * @return Annonce[] Returns an array of Annonce objects
     //  */

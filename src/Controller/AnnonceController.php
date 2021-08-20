@@ -22,13 +22,9 @@ class AnnonceController extends AbstractController
      */
     public function index()
     {
-        $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findAll();
-
-
+        $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findBy([], ['dateCreation' => 'DESC']);
         return $this->render('annonce/index.html.twig', [
             'annonces' => $annonces,
-
-
         ]);
     }
     /**
@@ -50,7 +46,7 @@ class AnnonceController extends AbstractController
             /** @var UploadedFile $brochureFile */
             $imageFile = $form->get('photo')->getData();
             if ($imageFile) {
-                $newFilename = $annonce->getTitre() . '.' . $imageFile->guessExtension();
+                $newFilename = $annonce->getTitre() . $annonce->getId() . '.' . $imageFile->guessExtension();
                 try {
                     $imageFile->move(
                         $this->getParameter('images_dir'),
@@ -61,6 +57,7 @@ class AnnonceController extends AbstractController
                     $this->addFlash('error', $e->getMessage());
                 }
             }
+            $annonce->setUser($this->getUser());
             $annonce = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($annonce);

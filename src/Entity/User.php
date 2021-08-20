@@ -83,14 +83,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $nom;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreation;
 
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
-        $this->dateCreation = new DateTime();
+        $this->dateCreation = new \DateTime();
     }
 
     public function getId(): ?int

@@ -3,12 +3,33 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+	<div class="uk-card uk-card-default uk-width-1-2@m">
+		<div class="uk-card-header">
+			<div class="uk-grid-small uk-flex-middle" uk-grid>
+				<div class="uk-width-auto">
+					<img class="" width="200" height="200" src="{{ asset('upload/'~ annonce.user.avatar) }}">
+				</div>
+				<div class="uk-width-expand">
 
-	<h1>{{ annonce.titre}}</h1>
-	<div><img src="{{ asset('upload/'~ annonce.photo) }}" alt="photo du jeu" width="200" height="200">
-		<p>{{ annonce.texte | raw}}</p>
-		<p>{{ annonce.user }}</p>
+					<p class="uk-text-meta uk-margin-remove-top">
+						Par
+						{{ annonce.user }}
+					</p>
+				</br>
+				Membre depuis
+				{{ annonce.user.dateCreation | date('d/m/Y')}}
+			</p>
+		</br>
+		<p>
+			le
+			{{ annonce.dateCreation | date('d/m/Y') }}
+		</p>
 	</div>
-
-
-{% endblock %}
+	<div class="uk-card-body">
+		<h3 class="uk-card-title uk-margin-remove-bottom">{{ annonce.titre}}</h3>
+		<div class="uk-width-auto">
+			<img class="" width="200" height="200" src="{{ asset('upload/'~ annonce.photo) }}">
+		</div>
+		<p>{{ annonce.texte | raw }}</p>
+	</div>
+</div></div></div></div>{% endblock %}

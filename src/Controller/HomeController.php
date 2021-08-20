@@ -19,7 +19,6 @@ class HomeController extends AbstractController
     {
         $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findAll();
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
             'annonces' => $annonces
         ]);
     }

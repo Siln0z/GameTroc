@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\AnnonceRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AnnonceRepository;
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
@@ -49,8 +50,10 @@ class Annonce
      */
     private $dateCreation;
 
+
     public function __construct()
     {
+        $this->dateCreation = new \DateTime();
     }
 
     public function getId(): ?int
