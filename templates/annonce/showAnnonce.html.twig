@@ -4,38 +4,39 @@
 
 {% block body %}
 	<div class="uk-card uk-card-default uk-width-1-2@m">
-		<div class="uk-card-header">
+		<div class="uk-card-header uk-margin-left">
 			<div class="uk-grid-small uk-flex-middle" uk-grid>
-				<div class="uk-width-auto">
-					<img class="" width="200" height="200" src="{{ asset('upload/'~ annonce.user.avatar) }}">
+				<div class="">
+					<img class="" width="100" height="100" src="{{ asset('upload/'~ annonce.user.avatar) }}">
 				</div>
-				<div class="uk-width-expand">
-					<p class="uk-text-meta uk-margin-remove-top">
+				<div class="uk-width-expand ">
+					<p class="uk-margin-remove-top">
 						Par
 						{{ annonce.user }}
 					</p>
-				</br>
-				Membre depuis
-				{{ annonce.user.dateCreation | date('d/m/Y')}}
-			</p>
-		</br>
-		<p>
-			le
-			{{ annonce.dateCreation | date('d/m/Y') }}
-		</p>
+
+					<p class="uk-text-meta uk-margin-remove-top">Membre depuis
+						{{ annonce.user.dateCreation | date('d/m/Y')}}
+					</p>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="uk-card-body">
-		<h3 class="uk-card-title uk-margin-remove-bottom">{{ annonce.titre}}</h3>
-		<div class="uk-width-auto">
+	<div class="uk-card uk-card-default uk-card-header uk-grid-small uk-flex-middle uk-width-1-2@m " uk-grid>
+		<div class="">
 			<img class="" width="200" height="200" src="{{ asset('upload/'~ annonce.photo) }}">
 		</div>
-		<p>{{ annonce.texte | raw }}</p>
+		<div class="">
+			<h3 class="uk-padding-remove-bottom uk-padding-remove-left">
+				{{ annonce.titre }}
+			</h3>
+			<p class="uk-text-meta ">
+				le
+				{{ annonce.dateCreation | date('d/m/Y') }}
+			</p>
+			<p class="uk-text-meta ">
+				{{  annonce.texte | raw }}
+			</p>
+		</div>
 	</div>
-	{# <div>
-			{{ form_start(formReponse, {'attr':{'novalidate':'novalidate'}}) }}
-			{{ form_label(formReponse.texte) }}
-			{{ form_widget(formReponse.texte) }}
-			{{ form_end(formReponse) }}
-			<a href="{{ path('add_reponse') }}">Répondre</a>
-		</div> #}
-</div></div></div></div>{% endblock %}
+{% endblock %}

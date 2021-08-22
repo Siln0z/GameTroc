@@ -4,22 +4,25 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Liste des annonces d'échange</h1>
-	<a href="{{ path('add_annonce') }}">AJOUTER</a>
-	{% for annonce in annonces %}
-		<a href="{{ path('show_annonce',{id:annonce.id} ) }}">
-			<div class="uk-card uk-card-hover">
-				<img src="{{ asset('upload/'~ annonce.photo) }}" alt="photo du jeu" width="100" height="100">
-				<p>{{ annonce.titre }}</p>
-				<p>Par
-					{{ annonce.user }}</p>
-				<p>
-					Le :
-					{{ annonce.dateCreation | date('d/m/Y') }}</p>
-				{# {{ annonce.texte | raw}} #}
+	<div class="annoncesListCenter">
+		<h1>Liste des annonces d'échange</h1>
+		<a class="uk-button uk-button-secondary uk-width-1-1" href="{{ path('add_annonce') }}">AJOUTER UNE ANNONCE</a>
+		<div class="uk-center" uk-grid>
+			{% for annonce in annonces %}
+				<a href=" {{ path('show_annonce',{id:annonce.id} ) }}">
+					<div class="uk-card uk-card-default uk-card-body uk-card-hover annonceCard">
+						<img class="" src="{{ asset('upload/'~ annonce.photo) }}" alt="photo du jeu" width="200" height="200">
+						<h3 class="">{{ annonce.titre }}</h3>
 
+						<p><img class="" width="50" height="50" src="{{ asset('upload/'~ annonce.user.avatar) }}">
+							Par
+							{{ annonce.user }}, le :
+							{{ annonce.dateCreation | date('d/m/Y') }}</p>
+					</div>
+				</a>
+			{% endfor %}
+		</div>
 
-			</div>
-		</a>
-	{% endfor %}
+	</div>
+	<a class="uk-button uk-button-secondary uk-width-1-1" href="{{ path('add_annonce') }}">AJOUTER UNE ANNONCE</a>
 {% endblock %}

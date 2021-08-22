@@ -6,6 +6,7 @@ use App\Entity\Reponse;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ReponseType extends AbstractType
@@ -16,7 +17,11 @@ class ReponseType extends AbstractType
             ->add('texte', TextareaType::class, [
                 'label_format' => 'Contenu',
                 'attr' => ['class' => 'mytextarea']
-            ]);
+            ])
+            ->add('valider', SubmitType::class, [
+                'label_format' => 'Poster la réponse',
+                'attr' => ['class' => 'uk-button uk-button-secondary uk-margin-top']
+            ]);;
     }
 
     public function configureOptions(OptionsResolver $resolver)

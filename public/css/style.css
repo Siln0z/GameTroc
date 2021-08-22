@@ -32,6 +32,21 @@ main{
 text-align: center;
 
 }
+.annoncesListCenter{
+text-align: center;
+padding : 0 10%;
+}
+.annonceCard{
+max-width: 400px !important;
+}
+/* .showAnnonceList:nth-child(even){
+    flex-direction: row-reverse;
+    text-align: right;
+}
+.annonceBorder{
+border: 1px solid;
+border-color: azure;
+} */
 
 
 

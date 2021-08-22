@@ -23,6 +23,8 @@ class AnnonceRepository extends ServiceEntityRepository
     // {
     //     return $this->findBy([], array('id' => 'ASC'));
     // }
+
+
     // /**
     //  * @return Annonce[] Returns an array of Annonce objects
     //  */

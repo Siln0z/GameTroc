@@ -81,50 +81,50 @@ class AnnonceController extends AbstractController
     public function showAnnonce(Annonce $annonce, Request $request): Response
     {
         $user = $this->getDoctrine()->getRepository(User::class)->findAll($annonce->getUser());
-        $reponse = $this->getDoctrine()->getRepository(Reponse::class)->findAll();
+        // $reponse = $this->getDoctrine()->getRepository(Reponse::class)->findAll();
 
-        $form = $this->createForm(ReponseType::class, $reponse);
-        $form->handleRequest($request);
-        $reponse->setReponse($this->getReponse());
-        $reponses = $form->getData();
+        // $form = $this->createForm(ReponseType::class, $reponse);
+        // $form->handleRequest($request);
+        // $reponse->setReponse($this->getReponse());
+        // $reponses = $form->getData();
 
 
         return $this->render("annonce/showAnnonce.html.twig", [
-            'formReponse' => $form->createView(),
+            // 'formReponse' => $form->createView(),
             'annonce' => $annonce,
             'user' => $user,
-            'reponses' => $reponses
+            // 'reponses' => $reponses
 
         ]);
     }
-    //     /**
-    //      * @Route("/addreponse", name="add_reponse")
-    //      */
-    //     public function addReponse(Reponse $reponse = NULL, Request $request)
-    //     {
-    //         $reponseRepository = $this->getDoctrine()->getRepository(Reponse::class);
+    /**
+     * @Route("/addreponse", name="add_reponse")
+     */
+    public function addReponse(Reponse $reponse = NULL, Request $request)
+    {
+        $reponseRepository = $this->getDoctrine()->getRepository(Reponse::class);
 
-    //         $reponse = $reponseRepository->findBy([], ["id" => "ASC"]);
-    //         if (!$reponse) {
-    //             $reponse = new Reponse();
-    //         }
+        $reponse = $reponseRepository->findBy([], ["id" => "ASC"]);
+        if (!$reponse) {
+            $reponse = new Reponse();
+        }
 
-    //         $form = $this->createForm(ReponseType::class, $reponse);
-    //         $form->handleRequest($request);
-
-
-    //         $reponse->setUser($this->getUser());
-    //         $reponse = $form->getData();
-    //         $entityManager = $this->getDoctrine()->getManager();
-    //         $entityManager->persist($reponse);
-    //         $entityManager->flush();
-
-    //         return $this->redirectToRoute('show_annonce');
+        $form = $this->createForm(ReponseType::class, $reponse);
+        $form->handleRequest($request);
 
 
-    //         return $this->render('annonce/showAnnonce.html.twig', [
-    //             'formReponse' => $form->createView(),
-    //             'reponse'    => $reponse
-    //         ]);
-    //     }
+        $reponse->setUser($this->getUser());
+        $reponse = $form->getData();
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($reponse);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('show_annonce');
+
+
+        return $this->render('annonce/showAnnonce.html.twig', [
+            'formReponse' => $form->createView(),
+            'reponse'    => $reponse
+        ]);
+    }
 }
