@@ -87,10 +87,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $dateCreation;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="user")
+     */
+    private $reponses;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
         $this->dateCreation = new \DateTime();
+        $this->reponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -312,5 +318,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return $this->pseudo;
+    }
+
+    /**
+     * @return Collection|Reponse[]
+     */
+    public function getReponses(): Collection
+    {
+        return $this->reponses;
+    }
+
+    public function addReponse(Reponse $reponse): self
+    {
+        if (!$this->reponses->contains($reponse)) {
+            $this->reponses[] = $reponse;
+            $reponse->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReponse(Reponse $reponse): self
+    {
+        if ($this->reponses->removeElement($reponse)) {
+            // set the owning side to null (unless already changed)
+            if ($reponse->getUser() === $this) {
+                $reponse->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

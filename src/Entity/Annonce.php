@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\AnnonceRepository;
 
@@ -50,10 +52,16 @@ class Annonce
      */
     private $dateCreation;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="Annonce")
+     */
+    private $reponses;
+
 
     public function __construct()
     {
         $this->dateCreation = new \DateTime();
+        $this->reponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -130,6 +138,36 @@ class Annonce
     public function setDateCreation(\DateTimeInterface $dateCreation): self
     {
         $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reponse[]
+     */
+    public function getReponses(): Collection
+    {
+        return $this->reponses;
+    }
+
+    public function addReponse(Reponse $reponse): self
+    {
+        if (!$this->reponses->contains($reponse)) {
+            $this->reponses[] = $reponse;
+            $reponse->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReponse(Reponse $reponse): self
+    {
+        if ($this->reponses->removeElement($reponse)) {
+            // set the owning side to null (unless already changed)
+            if ($reponse->getAnnonce() === $this) {
+                $reponse->setAnnonce(null);
+            }
+        }
 
         return $this;
     }

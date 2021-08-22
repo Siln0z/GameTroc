@@ -10,7 +10,6 @@
 					<img class="" width="200" height="200" src="{{ asset('upload/'~ annonce.user.avatar) }}">
 				</div>
 				<div class="uk-width-expand">
-
 					<p class="uk-text-meta uk-margin-remove-top">
 						Par
 						{{ annonce.user }}
@@ -32,4 +31,11 @@
 		</div>
 		<p>{{ annonce.texte | raw }}</p>
 	</div>
+	{# <div>
+			{{ form_start(formReponse, {'attr':{'novalidate':'novalidate'}}) }}
+			{{ form_label(formReponse.texte) }}
+			{{ form_widget(formReponse.texte) }}
+			{{ form_end(formReponse) }}
+			<a href="{{ path('add_reponse') }}">Répondre</a>
+		</div> #}
 </div></div></div></div>{% endblock %}
