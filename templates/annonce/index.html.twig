@@ -11,8 +11,8 @@
 			{% for annonce in annonces %}
 				<a href=" {{ path('show_annonce',{id:annonce.id} ) }}">
 					<div class="uk-card uk-card-default uk-card-body uk-card-hover annonceCard">
-						<img class="" src="{{ asset('upload/'~ annonce.photo) }}" alt="photo du jeu" width="200" height="200">
-						<h3 class="">{{ annonce.titre }}</h3>
+						<img class="imageAnnonce" src="{{ asset('upload/'~ annonce.photo) }}" alt="photo du jeu">
+						<h3 class="uk-margin-remove">{{ annonce.titre }}</h3>
 
 						<p><img class="" width="50" height="50" src="{{ asset('upload/'~ annonce.user.avatar) }}">
 							Par
@@ -23,5 +23,5 @@
 			{% endfor %}
 		</div>
 	</div>
-	<a class="uk-button uk-button-secondary uk-width-1-1" href="{{ path('add_annonce') }}">AJOUTER UNE ANNONCE</a>
+	<a class="uk-button uk-button-secondary uk-width-1-1" href="{{ path('add_annonce') }}">POSTER UNE ANNONCE</a>
 {% endblock %}

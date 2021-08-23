@@ -112,17 +112,16 @@ class AnnonceController extends AbstractController
         $form = $this->createForm(ReponseType::class, $reponse);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $reponse->setUser($this->getUser());
+            $reponse = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($reponse);
+            $entityManager->flush();
 
-        $reponse->setUser($this->getUser());
-        $reponse = $form->getData();
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($reponse);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('show_annonce');
-
-
-        return $this->render('annonce/showAnnonce.html.twig', [
+            return $this->redirectToRoute('show_annonce');
+        }
+        return $this->render('annonce/addreponse.html.twig', [
             'formReponse' => $form->createView(),
             'reponse'    => $reponse
         ]);

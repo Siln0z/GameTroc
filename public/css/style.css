@@ -34,14 +34,26 @@ text-align: center;
 }
 .annoncesListCenter{
 text-align: center;
-padding : 0 10%;
+
 }
 .annonceCard{
-max-width: 350px !important;
-min-width: 350px !important;
+width: 350px !important;
+height: 450px !important;
 }
 .annonceRecentes{
 padding-left: 40px !important;
+}
+.showAnnonce{
+min-width: 100% !important;
+}
+.showAnnonceTexte{
+padding-bottom : 20px !important;
+}
+.imageAnnonce{
+min-width: auto;
+max-width: auto;
+min-height: 200px;
+max-height: 200px;
 }
 /* .showAnnonceList:nth-child(even){
     flex-direction: row-reverse;

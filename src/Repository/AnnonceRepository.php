@@ -25,22 +25,21 @@ class AnnonceRepository extends ServiceEntityRepository
     // }
 
 
-    // /**
-    //  * @return Annonce[] Returns an array of Annonce objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Annonce[] Returns an array of Annonce objects
+     */
+
+    public function findTroisDernieresAnnonces()
     {
+        // $now = new \DateTime();
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            // ->andWhere('a.dateCreation > :now')
+            // ->setParameter('now', $now->format('Y-m-d'))
+            ->orderBy('a.dateCreation', 'DESC')
+            ->setMaxResults(3)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Annonce
