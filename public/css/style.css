@@ -37,7 +37,11 @@ text-align: center;
 padding : 0 10%;
 }
 .annonceCard{
-max-width: 400px !important;
+max-width: 350px !important;
+min-width: 350px !important;
+}
+.annonceRecentes{
+padding-left: 40px !important;
 }
 /* .showAnnonceList:nth-child(even){
     flex-direction: row-reverse;

@@ -6,7 +6,7 @@
 {% block body %}
 	<div class="annoncesListCenter">
 		<h1>Annonces récentes</h1>
-		<div class="" uk-grid>
+		<div class="annonceRecentes" uk-grid>
 			{% for annonce in annonces %}
 				<a href=" {{ path('show_annonce',{id:annonce.id} ) }}">
 					<div class="uk-card uk-card-default uk-card-body uk-card-hover annonceCard">

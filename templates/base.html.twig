@@ -22,7 +22,8 @@
 			<script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit-icons.min.js"></script>
 			<!-- TinyMCE -->
 			<script src="https://cdn.tiny.cloud/1/7qmdxp6fv03ugwou5gi0vqbwvb9aydok75u80qqew7mb09ik/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-
+			<!-- FONT Awesome -->
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
 		{% endblock %}
 	</head>
 	<body>
@@ -40,31 +41,45 @@
 				<div class="uk-navbar-right">
 					<ul class="uk-navbar-nav">
 						<li class="uk-navbar-item">
-							<a href="{{path('home')}}">Accueil</a>
+							<a href="{{path('home')}}">
+								<i class="fas fa-home"></i>&nbsp
+								Accueil</a>
 						</li>
 						{% if is_granted('ROLE_ADMIN') %}
 							<li class="uk-navbar-item">
-								<a href="{{ path('admin') }}">Admin</a>
+								<a href="{{ path('admin') }}">
+									<i class="fas fa-user-cog"></i>&nbsp
+									Admin</a>
 							</li>
 						{% endif %}
 						<li class="uk-navbar-item">
-							<a href="{{path('annonces')}}">Annonces</a>
+							<a href="{{path('annonces')}}">
+								<i class="fas fa-scroll"></i>&nbsp
+								Annonces</a>
 						</li>
 						{% if app.user %}
 							<li class="uk-navbar-item">
-								<a href="">Bonjour
+								<a href="profil">
+									<i class="fas fa-user"></i>&nbsp
+									Bonjour
 									{{ app.user.prenom }}
 									!</a>
 							</li>
 							<li class="uk-navbar-item">
-								<a href="{{path('app_logout')}}">Déconnexion</a>
+								<a href="{{path('app_logout')}}">
+									<i class="fas fa-plane-slash"></i>&nbsp
+									Déconnexion</a>
 							</li>
 						{% else %}
 							<li class="uk-navbar-item">
-								<a href="{{path('app_register')}}">Inscription</a>
+								<a href="{{path('app_register')}}">
+									<i class="fas fa-sign-in-alt"></i>&nbsp
+									Inscription</a>
 							</li>
 							<li class="uk-navbar-item">
-								<a href="{{path('app_login')}}">Connexion</a>
+								<a href="{{path('app_login')}}">
+									<i class="fas fa-plug"></i>&nbsp
+									Connexion</a>
 							</li>
 						{% endif %}
 
@@ -75,7 +90,7 @@
 		{% block body %}{% endblock %}
 		{% block footer %}
 			<footer class="uk-text-center uk-align-center">
-				<p>© 2021 Elan</p>
+				<p>© 2021 Capsule Corp</p>
 			</footer>
 		{% endblock %}
 		<script>

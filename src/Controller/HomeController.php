@@ -17,8 +17,8 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
-        $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findAll();
-        $annonces = array_slice($annonces, 2);
+        $annonces = $this->getDoctrine()->getManager()->createQuery('SELECT a FROM App\Entity\Annonce a ORDER BY a.dateCreation DESC')->setMaxResults(3)->getResult();
+        // $annonces = array_slice($annonces, 2);
         return $this->render('home/index.html.twig', [
             'annonces' => $annonces
         ]);

@@ -28,6 +28,7 @@ class AnnonceType extends AbstractType
             ])
             ->add('photo', FileType::class, [
                 'mapped' => false,
+                'label' => 'Ajouter une photo',
                 'required' => false,
                 'constraints' => [
                     new File([
@@ -36,7 +37,7 @@ class AnnonceType extends AbstractType
                             'image/jpeg',
                             'image/png'
                         ],
-                        'mimeTypesMessage' => 'taille max : 1Mo en jpg ou png'
+                        'mimeTypesMessage' => 'taille max : 1Mo en format .jpg ou .png'
                     ])
                 ]
             ])
