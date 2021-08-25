@@ -25,6 +25,7 @@
 			<!-- FONT Awesome -->
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous"/>
 		{% endblock %}
+
 	</head>
 	<body>
 		<div id="banniere">
@@ -43,43 +44,43 @@
 						<li class="uk-navbar-item">
 							<a href="{{path('home')}}">
 								<i class="fas fa-home"></i>&nbsp
-								Accueil</a>
+																Accueil</a>
 						</li>
 						{% if is_granted('ROLE_ADMIN') %}
 							<li class="uk-navbar-item">
 								<a href="{{ path('admin') }}">
 									<i class="fas fa-user-cog"></i>&nbsp
-									Admin</a>
+																	Admin</a>
 							</li>
 						{% endif %}
 						<li class="uk-navbar-item">
 							<a href="{{path('annonces')}}">
 								<i class="fas fa-scroll"></i>&nbsp
-								Annonces</a>
+																Annonces</a>
 						</li>
 						{% if app.user %}
 							<li class="uk-navbar-item">
 								<a href="profil">
 									<i class="fas fa-user"></i>&nbsp
-									Bonjour
+																																																																																																																																																					Bonjour
 									{{ app.user.prenom }}
 									!</a>
 							</li>
 							<li class="uk-navbar-item">
 								<a href="{{path('app_logout')}}">
 									<i class="fas fa-plane-slash"></i>&nbsp
-									Déconnexion</a>
+																		Déconnexion</a>
 							</li>
 						{% else %}
 							<li class="uk-navbar-item">
 								<a href="{{path('app_register')}}">
 									<i class="fas fa-sign-in-alt"></i>&nbsp
-									Inscription</a>
+																		Inscription</a>
 							</li>
 							<li class="uk-navbar-item">
 								<a href="{{path('app_login')}}">
 									<i class="fas fa-plug"></i>&nbsp
-									Connexion</a>
+																	Connexion</a>
 							</li>
 						{% endif %}
 
@@ -87,6 +88,16 @@
 				</div>
 			</div>
 		</div>
+		{# read and display several types of flash messages #}
+		{% for label, messages in app.flashes(['success','warning','error']) %}
+			{% for message in messages %}
+				<div class="uk-alert-{{ label }}" uk-alert>
+					<a class="uk-alert-close" uk-close></a>
+					<p>{{ message }}</p>
+				</div>
+			{% endfor %}
+		{% endfor %}
+
 		{% block body %}{% endblock %}
 		{% block footer %}
 			<footer class="uk-text-center uk-align-center">

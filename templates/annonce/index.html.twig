@@ -6,7 +6,7 @@
 {% block body %}
 	<div class="annoncesListCenter">
 		<h1>Liste des annonces d'échange</h1>
-		<a class="uk-button uk-button-secondary uk-width-1-1" href="{{ path('add_annonce') }}">AJOUTER UNE ANNONCE</a>
+		<a class="uk-button uk-button-secondary uk-margin-top" href="{{ path('add_annonce') }}">POSTER UNE ANNONCE</a>
 		<div class="" uk-grid>
 			{% for annonce in annonces %}
 				<a href=" {{ path('show_annonce',{id:annonce.id} ) }}">
@@ -18,10 +18,18 @@
 							Par
 							{{ annonce.user }}, le :
 							{{ annonce.dateCreation | date('d/m/Y') }}</p>
-					</div>
-				</a>
+					</a>
+					{% if is_granted('ROLE_ADMIN') %}
+						<a href="{{ path('suppr_annonce', {id : annonce.id}) }}">
+							<i class="fas fa-trash-alt"></i>
+						</a>
+					{% endif %}
+				</div>
+
+
 			{% endfor %}
 		</div>
+		<a class="uk-button uk-button-secondary uk-margin-top" href="{{ path('add_annonce') }}">POSTER UNE ANNONCE</a>
 	</div>
-	<a class="uk-button uk-button-secondary uk-width-1-1" href="{{ path('add_annonce') }}">POSTER UNE ANNONCE</a>
+
 {% endblock %}

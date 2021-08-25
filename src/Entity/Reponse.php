@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ReponseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -34,13 +35,22 @@ class Reponse
 
     /**
      * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="reponses")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $Annonce;
+    private $annonce;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reponses")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+
+    public function __construct()
+    {
+        $this->dateReponse = new \DateTime();
+        $this->moderationReponse = 0;
+    }
 
     public function getId(): ?int
     {
@@ -83,14 +93,14 @@ class Reponse
         return $this;
     }
 
-    public function getAnnonce(): ?Annonce
+    public function getAnnonce(): Annonce
     {
-        return $this->Annonce;
+        return $this->annonce;
     }
 
-    public function setAnnonce(?Annonce $Annonce): self
+    public function setAnnonce(Annonce $annonce): self
     {
-        $this->Annonce = $Annonce;
+        $this->annonce = $annonce;
 
         return $this;
     }

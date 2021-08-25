@@ -71,12 +71,7 @@ class Categorie
 
     public function removeJeux(Jeu $jeux): self
     {
-        if ($this->jeux->removeElement($jeux)) {
-            // set the owning side to null (unless already changed)
-            if ($jeux->getCategorie() === $this) {
-                $jeux->setCategorie(null);
-            }
-        }
+        $this->jeux->removeElement($jeux);
 
         return $this;
     }

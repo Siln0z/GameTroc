@@ -33,9 +33,13 @@ class AnnonceController extends AbstractController
     }
     /**
      * @Route("/addannonce", name="add_annonce")
+     * @Route("/{id}/editannonce", name="edit_annonce")
      */
     public function addAnnonce(Annonce $annonce = NULL, Request $request)
     {
+        if (!$annonce) {
+            $annonce = new Annonce();
+        }
         $annonceRepository = $this->getDoctrine()->getRepository(Annonce::class);
 
         $annonces = $annonceRepository->findBy([], ["id" => "ASC"]);
@@ -67,6 +71,11 @@ class AnnonceController extends AbstractController
             $entityManager->persist($annonce);
             $entityManager->flush();
 
+            $this->addFlash(
+                'success',
+                'Votre annonce a été postée avec succès!'
+            );
+
             return $this->redirectToRoute('annonces');
         }
 
@@ -76,12 +85,49 @@ class AnnonceController extends AbstractController
         ]);
     }
     /**
+     * @Route("/addreponse/{id}", name="add_reponse")
+     */
+    public function addReponse(Annonce $annonce, Request $request)
+    {
+        $reponse = new Reponse();
+
+
+        $form = $this->createForm(ReponseType::class, $reponse);
+
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            //$reponse = $form->getData();
+
+            $reponse->setUser($this->getUser());
+            $entityManager = $this->getDoctrine()->getManager();
+            $annonce->addReponse($reponse);
+
+            $entityManager->persist($reponse);
+
+            $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                'La réponse à bien été ajoutée!'
+            );
+
+            return $this->redirectToRoute('show_annonce', ['id' => $annonce->getId()]);
+        }
+        return $this->render('annonce/addreponse.html.twig', [
+            'formReponse' => $form->createView(),
+            'reponse'    => $reponse
+        ]);
+    }
+    /**
      * @Route("/showannonce/{id}", name="show_annonce", methods="GET")
      */
     public function showAnnonce(Annonce $annonce, Request $request): Response
     {
         $user = $this->getDoctrine()->getRepository(User::class)->findAll($annonce->getUser());
-        // $reponse = $this->getDoctrine()->getRepository(Reponse::class)->findAll();
+        $reponses = $this->getDoctrine()->getRepository(Reponse::class)->findBy(['annonce' => $annonce->getId()]);
 
         // $form = $this->createForm(ReponseType::class, $reponse);
         // $form->handleRequest($request);
@@ -90,40 +136,42 @@ class AnnonceController extends AbstractController
 
 
         return $this->render("annonce/showAnnonce.html.twig", [
-            // 'formReponse' => $form->createView(),
             'annonce' => $annonce,
             'user' => $user,
-            // 'reponses' => $reponses
+            'reponses' => $reponses
 
         ]);
     }
     /**
-     * @Route("/addreponse", name="add_reponse")
+     * @Route("/showannonce/supprannonce/{id}",name="suppr_annonce", methods="GET")  
      */
-    public function addReponse(Reponse $reponse = NULL, Request $request)
+    public function removeAnnonce(Annonce $annonce = NULL)
     {
-        $reponseRepository = $this->getDoctrine()->getRepository(Reponse::class);
+        $suppr = $this->getDoctrine()->getManager();
+        $suppr->remove($annonce);
+        $suppr->flush();
 
-        $reponse = $reponseRepository->findBy([], ["id" => "ASC"]);
-        if (!$reponse) {
-            $reponse = new Reponse();
-        }
+        $this->addFlash(
+            'warning',
+            'cette annonce à bien été supprimée !'
+        );
 
-        $form = $this->createForm(ReponseType::class, $reponse);
-        $form->handleRequest($request);
+        return $this->redirectToRoute('annonces');
+    }
+    /**
+     * @Route("/showannonce/supprreponse/{id}",name="suppr_reponse", methods="GET")  
+     */
+    public function removeReponse(Reponse $reponse = NULL)
+    {
+        $suppr = $this->getDoctrine()->getManager();
+        $suppr->remove($reponse);
+        $suppr->flush();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $reponse->setUser($this->getUser());
-            $reponse = $form->getData();
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($reponse);
-            $entityManager->flush();
+        $this->addFlash(
+            'warning',
+            'La réponse à bien été supprimée!'
+        );
 
-            return $this->redirectToRoute('show_annonce');
-        }
-        return $this->render('annonce/addreponse.html.twig', [
-            'formReponse' => $form->createView(),
-            'reponse'    => $reponse
-        ]);
+        return $this->redirectToRoute('annonces');
     }
 }

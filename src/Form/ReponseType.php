@@ -21,7 +21,7 @@ class ReponseType extends AbstractType
             ->add('valider', SubmitType::class, [
                 'label_format' => 'Poster la réponse',
                 'attr' => ['class' => 'uk-button uk-button-secondary uk-margin-top']
-            ]);;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

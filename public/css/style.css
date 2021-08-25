@@ -18,42 +18,89 @@ main{
 }
 
 #navbar{
-    background-color:rgb(51, 112, 211);
+    background-color: cadetblue;
 }
 
-#navbar a{
-    color:rgb(231, 227, 227);
-
-}
-.uk-navbar-dropdown{
-    background-color: rgb(51, 112, 211);
- }
 #banniere{
-text-align: center;
-
+    text-align: center; 
+}
+.uk-grid:first-child{
+    margin-left: 0 !important;
 }
 .annoncesListCenter{
-text-align: center;
-
+    text-align: center;
+    align-items: center;
 }
 .annonceCard{
-width: 350px !important;
-height: 450px !important;
+    width: 350px !important;
+    height: 450px !important;
 }
 .annonceRecentes{
-padding-left: 40px !important;
-}
-.showAnnonce{
-min-width: 100% !important;
+padding-left: 40px !important;  
 }
 .showAnnonceTexte{
-padding-bottom : 20px !important;
+padding-bottom : 20px !important;   
 }
 .imageAnnonce{
-min-width: auto;
-max-width: auto;
-min-height: 200px;
-max-height: 200px;
+    min-width: auto;
+    max-width: auto;
+    min-height: 200px;
+    max-height: 200px;
+}
+.section-annonce{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+}
+.section-user{
+    background-color: #00948c;
+    color: white;
+    text-align: center;
+    min-width: 200px;
+    padding-top: 10px;
+}
+.section-image{
+    padding-left: 50px;
+    min-width: 300px;
+}
+.section-description{
+    padding-left : 10px;
+}
+.section-reponse{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    border-top: solid #9999;
+
+}
+/* .section-reponse.section-user:nth-child(even){
+background-color: #f7921e;
+} */
+.section-texte{
+    display: flex;
+    align-items: center;
+    
+}
+.section-reponse{
+
+    align-items: center
+}
+.section-reponse-texte{
+    padding-left: 10px;
+}
+
+.section-reponse-flex{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+}
+.fa-trash-alt{
+color: #e1550d;
+}
+.fa-edit{
+color: #00948c;
 }
 /* .showAnnonceList:nth-child(even){
     flex-direction: row-reverse;
@@ -63,8 +110,27 @@ max-height: 200px;
 border: 1px solid;
 border-color: azure;
 } */
+/* .uk-card-header{
+    background: cadetblue;
+}
+.uk-card-footer{
+    background: cadetblue;
+}
+.uk-text-meta{
+    color:black;
+}
+ .uk-card-body{
+    background: #D6D6D6;
+    color: black;
+} 
+.uk-card-default{
+    background: #D6D6D6;
+} */
 
 
 
-
+/*  vert : #00948c
+    orange : #f7921e
+    orange foncé : #e1550d 
+*/
 
