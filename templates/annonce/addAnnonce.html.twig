@@ -3,14 +3,22 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-
-	<h1>Ajouter une annonce d'échange</h1>
+	<div class="addAnnonceRegles">
+		<h1>Ajouter une annonce</h1>
+		<p>Merci de préciser les éléments suivant dans votre annonce :</p>
+		<li>L'état du jeu (neuf, comme neuf, abimé, etc...),</li>
+		<li>S'il manque des pièces, et lesquels,</li>
+		<li>Contre quel(s) jeu(x) vous souhaiteriez échanger le votre. N'hésitez pas à faire plusieurs propositions.</li>
+	</div>
 	{{ form_start(formAnnonce, {'attr':{'novalidate':'novalidate'}}) }}
-	{{ form_label(formAnnonce.titre) }}
-	{{ form_widget(formAnnonce.titre) }}
-	{{ form_label(formAnnonce.texte) }}
-	{{ form_widget(formAnnonce.texte) }}
-
+	<div class="customForm">
+		{{ form_label(formAnnonce.titre) }}
+		{{ form_widget(formAnnonce.titre) }}
+	</div>
+	<div class="customForm">
+		{{ form_label(formAnnonce.texte) }}
+		{{ form_widget(formAnnonce.texte) }}
+	</div>
 
 	{{ form_end(formAnnonce) }}
 {% endblock %}

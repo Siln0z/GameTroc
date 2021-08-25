@@ -2,63 +2,105 @@
     box-sizing: border-box;
 }
 
-h1, h3 {
-    color:rgb(75, 77, 80);
-    padding:1em;
-}
 body{
     max-width: 1390px;
     margin: 0 auto;
+    background-color:rgba(233, 233, 233, 0.931);
 }
-
-
-main{
-    /* min-height: 80vh;  */
-    background-color:rgb(222, 221, 247);
+#wrapper{
+    background-color:rgba(233, 233, 233, 0.931);
 }
-
-#navbar{
-    background-color: cadetblue;
-}
-
 #banniere{
     text-align: center; 
+}
+.texteBienvenue{
+    text-align: center;
+    display: block;
+
 }
 .uk-grid:first-child{
     margin-left: 0 !important;
 }
 .annoncesListCenter{
     text-align: center;
-    align-items: center;
+
+}
+.homeImageCard{
+    max-width: 200px;
+    max-height: 200px;
+}
+.btn{
+    margin-top: 50px;
+    max-width: 220px;
+    max-height: 38px;
+}
+.uk-button-secondary{
+    background-color: #00948c ;
+    margin : 10px;
+}
+.btnSuppr{
+    background-color: #e1550d;
+}
+.btnSousAnnonce{
+    display: flex;
+    justify-content: space-between;
+}
+.annonceCard,a{
+    text-decoration: none !important;
+    display: block;
+
+}
+#annonce_photo{
+    margin: 20px;
+}
+.addAnnonceRegles h1{
+    margin-left: 33%;
+}
+.addAnnonceRegles{
+    margin-bottom: 30px;
+}
+.customForm{
+    margin: 10px;
+    font-weight: bold;
 }
 .annonceCard{
-    width: 350px !important;
+    width: 400px !important;
     height: 450px !important;
 }
+.userCard{
+    padding-top: 20px;
+}
 .annonceRecentes{
-padding-left: 40px !important;  
+    display: flex !important;
+    justify-content: space-around;
+    padding-left: 40px !important;
+    align-items: center !important;  
 }
 .showAnnonceTexte{
-padding-bottom : 20px !important;   
+    padding-bottom : 20px !important;   
 }
 .imageAnnonce{
     min-width: auto;
     max-width: auto;
     min-height: 200px;
     max-height: 200px;
+    padding-bottom: 20px;
 }
 .section-annonce{
     display: flex;
     flex-direction: row;
     align-items: stretch;
-
+    padding-left: 10px;
+    background-color: white;
+    margin : 15px;
 }
 .section-user{
-    background-color: #00948c;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(7, 7, 7);
     text-align: center;
     min-width: 200px;
     padding-top: 10px;
+
 }
 .section-image{
     padding-left: 50px;
@@ -69,38 +111,43 @@ padding-bottom : 20px !important;
 }
 .section-reponse{
     display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    border-top: solid #9999;
-
+    flex-direction: row-reverse;
+    background-color: white;    
+    margin: 15px;
 }
 /* .section-reponse.section-user:nth-child(even){
 background-color: #f7921e;
 } */
 .section-texte{
     display: flex;
-    align-items: center;
-    
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: nowrap;
 }
 .section-reponse{
-
     align-items: center
 }
 .section-reponse-texte{
     padding-left: 10px;
 }
-
 .section-reponse-flex{
     display: flex;
     width: 100%;
     justify-content: space-between;
-
+}
+.fa-ban{
+    color: #e1550d;  
 }
 .fa-trash-alt{
-color: #e1550d;
+    color: #e1550d;
 }
 .fa-edit{
-color: #00948c;
+    color: #00948c;
+}
+.footer{
+    border: solid white;
+    margin: 10px;
 }
 /* .showAnnonceList:nth-child(even){
     flex-direction: row-reverse;

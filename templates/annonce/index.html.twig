@@ -7,14 +7,14 @@
 	<div class="annoncesListCenter">
 		<h1>Liste des annonces d'échange</h1>
 		<a class="uk-button uk-button-secondary uk-margin-top" href="{{ path('add_annonce') }}">POSTER UNE ANNONCE</a>
-		<div class="" uk-grid>
+		<div class=" uk-flex uk-flex-center uk-flex-wrap">
 			{% for annonce in annonces %}
-				<a href=" {{ path('show_annonce',{id:annonce.id} ) }}">
-					<div class="uk-card uk-card-default uk-card-body uk-card-hover annonceCard">
-						<img class="imageAnnonce" src="{{ asset('upload/'~ annonce.photo) }}" alt="photo du jeu">
-						<h3 class="uk-margin-remove">{{ annonce.titre }}</h3>
 
-						<p><img class="" width="50" height="50" src="{{ asset('upload/'~ annonce.user.avatar) }}">
+				<div class="uk-card uk-card-default uk-card-body uk-card-hover uk-margin-left uk-margin-top annonceCard">
+					<a href=" {{ path('show_annonce',{id:annonce.id} ) }}">
+						<img class="imageAnnonce" src="{{ asset('upload/'~ annonce.photo) }}" alt="photo du jeu">
+						<p class="uk-margin-remove uk-text-lead">{{ annonce.titre }}</p>
+						<p class="userCard uk-text-default"><img class="" width="50" height="50" src="{{ asset('upload/'~ annonce.user.avatar) }}">
 							Par
 							{{ annonce.user }}, le :
 							{{ annonce.dateCreation | date('d/m/Y') }}</p>

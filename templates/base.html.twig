@@ -28,92 +28,94 @@
 
 	</head>
 	<body>
-		<div id="banniere">
-			<img id="banniereimg" src="{{ asset('img/banniere.jpg') }}" alt="banniere">
-			<a href="">
-				<nav id="navbar" class="uk-navbar-container" uk-navbar></a>
+		<div id="wrapper">
+			<div id="banniere">
+				<img id="banniereimg" src="{{ asset('img/banniere.jpg') }}" alt="banniere">
+				<a href="">
+					<nav id="navbar" class="uk-navbar-container" uk-navbar></a>
+				</div>
+				<div class="uk-navbar">
+					<div class="uk-navbar-left">
+						<h2>GameTroc - l'échange ludique</h2>
+					</div>
+
+
+					<div class="uk-navbar-right">
+						<ul class="uk-navbar-nav">
+							<li class="uk-navbar-item">
+								<a href="{{path('home')}}">
+									<i class="fas fa-home"></i>&nbsp
+																																																							Accueil</a>
+							</li>
+							{% if is_granted('ROLE_ADMIN') %}
+								<li class="uk-navbar-item">
+									<a href="{{ path('admin') }}">
+										<i class="fas fa-user-cog"></i>&nbsp
+																																																												Admin</a>
+								</li>
+							{% endif %}
+							<li class="uk-navbar-item">
+								<a href="{{path('annonces')}}">
+									<i class="fas fa-scroll"></i>&nbsp
+																																																							Annonces</a>
+							</li>
+							{% if app.user %}
+								<li class="uk-navbar-item">
+									<a href="user">
+										<i class="fas fa-user"></i>&nbsp
+																																																																																																																																																																																																Bonjour
+										{{ app.user.prenom }}
+										!</a>
+								</li>
+								<li class="uk-navbar-item">
+									<a href="{{path('app_logout')}}">
+										<i class="fas fa-plane-slash"></i>&nbsp
+																																																													Déconnexion</a>
+								</li>
+							{% else %}
+								<li class="uk-navbar-item">
+									<a href="{{path('app_register')}}">
+										<i class="fas fa-sign-in-alt"></i>&nbsp
+																																																													Inscription</a>
+								</li>
+								<li class="uk-navbar-item">
+									<a href="{{path('app_login')}}">
+										<i class="fas fa-plug"></i>&nbsp
+																																																												Connexion</a>
+								</li>
+							{% endif %}
+
+						</ul>
+					</div>
+				</div>
 			</div>
-			<div class="uk-navbar">
-				<div class="uk-navbar-left">
-					<h2>GameTroc - l'échange ludique</h2>
-				</div>
-
-
-				<div class="uk-navbar-right">
-					<ul class="uk-navbar-nav">
-						<li class="uk-navbar-item">
-							<a href="{{path('home')}}">
-								<i class="fas fa-home"></i>&nbsp
-																Accueil</a>
-						</li>
-						{% if is_granted('ROLE_ADMIN') %}
-							<li class="uk-navbar-item">
-								<a href="{{ path('admin') }}">
-									<i class="fas fa-user-cog"></i>&nbsp
-																	Admin</a>
-							</li>
-						{% endif %}
-						<li class="uk-navbar-item">
-							<a href="{{path('annonces')}}">
-								<i class="fas fa-scroll"></i>&nbsp
-																Annonces</a>
-						</li>
-						{% if app.user %}
-							<li class="uk-navbar-item">
-								<a href="profil">
-									<i class="fas fa-user"></i>&nbsp
-																																																																																																																																																					Bonjour
-									{{ app.user.prenom }}
-									!</a>
-							</li>
-							<li class="uk-navbar-item">
-								<a href="{{path('app_logout')}}">
-									<i class="fas fa-plane-slash"></i>&nbsp
-																		Déconnexion</a>
-							</li>
-						{% else %}
-							<li class="uk-navbar-item">
-								<a href="{{path('app_register')}}">
-									<i class="fas fa-sign-in-alt"></i>&nbsp
-																		Inscription</a>
-							</li>
-							<li class="uk-navbar-item">
-								<a href="{{path('app_login')}}">
-									<i class="fas fa-plug"></i>&nbsp
-																	Connexion</a>
-							</li>
-						{% endif %}
-
-					</ul>
-				</div>
-			</div>
-		</div>
-		{# read and display several types of flash messages #}
-		{% for label, messages in app.flashes(['success','warning','error']) %}
-			{% for message in messages %}
-				<div class="uk-alert-{{ label }}" uk-alert>
-					<a class="uk-alert-close" uk-close></a>
-					<p>{{ message }}</p>
-				</div>
+			{# read and display several types of flash messages #}
+			{% for label, messages in app.flashes(['success','warning','error']) %}
+				{% for message in messages %}
+					<div class="uk-alert-{{ label }}" uk-alert>
+						<a class="uk-alert-close" uk-close></a>
+						<p>{{ message }}</p>
+					</div>
+				{% endfor %}
 			{% endfor %}
-		{% endfor %}
 
-		{% block body %}{% endblock %}
-		{% block footer %}
-			<footer class="uk-text-center uk-align-center">
-				<p>© 2021 Capsule Corp</p>
-			</footer>
-		{% endblock %}
-		<script>
-			tinymce.init({
+			{% block body %}{% endblock %}
+			{% block footer %}
+				<footer class="uk-text-center uk-align-center">
+					<p>© 2021 Capsule Corp</p>
+				</footer>
+			{% endblock %}
+			<script>
+				tinymce.init({
 selector: '.mytextarea',
 max_height: 400,
 max_width: 2000,
 min_height: 400,
 min_width: 2000
 });
-		</script>
-		<script src="js/uikit.min.js"></script>
-		<script src="js/uikit-icons.min.js"></script>
+			</script>
+			<script src="js/uikit.min.js"></script>
+			<script src="js/uikit-icons.min.js"></script>
+		</div>
 	</body>
 </html>

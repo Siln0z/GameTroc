@@ -28,7 +28,8 @@ class AnnonceType extends AbstractType
             ])
             ->add('photo', FileType::class, [
                 'mapped' => false,
-                'label' => 'Ajouter une photo',
+                'label' => 'Ajouter une photo à votre annonce',
+                'attr' => ['class' => 'uk-flex uk-margin'],
                 'required' => false,
                 'constraints' => [
                     new File([

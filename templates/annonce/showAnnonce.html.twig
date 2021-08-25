@@ -18,6 +18,11 @@
 				<p class="uk-text-meta uk-margin-remove-top">Membre depuis
 					{{ annonce.user.dateCreation | date('d/m/Y')}}
 				</p>
+				{% if is_granted('ROLE_ADMIN') %}
+					<a>
+						<i class="fas fa-ban"></i>
+					</a>
+				{% endif %}
 			</div>
 		</section>
 		<section class="section-image">
@@ -40,14 +45,17 @@
 				<div class="showAnnonceTexte">
 					{{  annonce.texte | raw }}
 				</div>
-				<div classe="section-moderation">
-					<a href=" {{ path('edit_annonce', {id : annonce.id} ) }}">
-						<i class="fas fa-edit"></i>
-					</a>
+				<div class="section-moderation">
+					{% if (app.user == annonce.user) or (is_granted('ROLE_ADMIN')) %}
+						<a href=" {{ path('edit_annonce', {id : annonce.id} ) }}">
+							<i class="fas fa-edit"></i>
+						</a>
+					{% endif %}
 					{% if is_granted('ROLE_ADMIN') %}
 						<a href="{{ path('suppr_annonce', {id : annonce.id}) }}">
 							<i class="fas fa-trash-alt"></i>
 						</a>
+
 					{% endif %}
 				</div>
 			</section>
@@ -82,13 +90,16 @@
 			</section>
 		{% endfor %}
 
-		<div>
+		<div class="btnSousAnnonce">
+
 			{% if is_granted('ROLE_USER') %}
 				<a class=" uk-button uk-button-secondary uk-margin-top" href=" {{ path('add_reponse', {id: annonce.id} ) }}">PROPOSER UN ECHANGE</a>
 			{% else %}
 				<a class="uk-button uk-button-secondary uk-margin-top" href="{{ path('app_login', {id: annonce.id}) }}">CONNECTEZ-VOUS POUR PROPOSER UN ECHANGE</a>
 			{% endif %}
-
+			{% if app.user == annonce.user %}
+				<a class="btnSuppr uk-button uk-button-secondary uk-margin-top" href=" {{ path('suppr_annonce', {id: annonce.id} ) }}">SUPPRIMER MON ANNONCE</a>
+			{% endif %}
 		</div>
 
 	{% endblock %}

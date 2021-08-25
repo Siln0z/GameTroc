@@ -6,23 +6,26 @@
 {% block body %}
 	<div class="annoncesListCenter">
 		{% if is_granted('ROLE_USER') %}
-			<p>connecté</p>
+
+			<a class="uk-button uk-button-secondary uk-margin-top uk-align-center btn" href="{{ path('add_annonce') }}">POSTER UNE ANNONCE</a>
+
 		{% else %}
-			<p>Bonjour ! Bienvenue sur
+			<p class="texteBienvenue">Bonjour ! Bienvenue sur
 				<b>GameTroc</b>
-				! Vous pouvez consulter les annonces,
-				<a href="{{path('app_login')}}">connectez-vous</a>
+				! Vous pouvez consulter les annonces,<a href="{{path('app_login')}}">
+					connectez-vous</a>
 				si vous vouler en poster une ou y répondre.</p>
 			<p>Si vous n'avez pas de compte,<a href="{{path('app_register')}}">
 					inscrivez vous</a>!
 			</p>
 		{% endif %}
+
 		<h1>Annonces récentes</h1>
 		<div class="annonceRecentes" uk-grid>
 			{% for annonce in annonces %}
 				<a href=" {{ path('show_annonce',{id:annonce.id} ) }}">
 					<div class="uk-card uk-card-default uk-card-body uk-card-hover annonceCard">
-						<img class="" src="{{ asset('upload/'~ annonce.photo) }}" alt="photo du jeu" width="200" height="200">
+						<img class="homeImageCard" src="{{ asset('upload/'~ annonce.photo) }}" alt="photo du jeu">
 						<h4 class="">{{ annonce.titre }}</h4>
 						<p><img class="" width="50" height="50" src="{{ asset('upload/'~ annonce.user.avatar) }}">
 							Par

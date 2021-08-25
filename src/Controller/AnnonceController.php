@@ -37,9 +37,7 @@ class AnnonceController extends AbstractController
      */
     public function addAnnonce(Annonce $annonce = NULL, Request $request)
     {
-        if (!$annonce) {
-            $annonce = new Annonce();
-        }
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $annonceRepository = $this->getDoctrine()->getRepository(Annonce::class);
 
         $annonces = $annonceRepository->findBy([], ["id" => "ASC"]);
@@ -86,20 +84,18 @@ class AnnonceController extends AbstractController
     }
     /**
      * @Route("/addreponse/{id}", name="add_reponse")
+     * 
      */
     public function addReponse(Annonce $annonce, Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $reponse = new Reponse();
 
-
         $form = $this->createForm(ReponseType::class, $reponse);
-
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            //$reponse = $form->getData();
 
             $reponse->setUser($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
@@ -147,6 +143,7 @@ class AnnonceController extends AbstractController
      */
     public function removeAnnonce(Annonce $annonce = NULL)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $suppr = $this->getDoctrine()->getManager();
         $suppr->remove($annonce);
         $suppr->flush();
@@ -163,6 +160,7 @@ class AnnonceController extends AbstractController
      */
     public function removeReponse(Reponse $reponse = NULL)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $suppr = $this->getDoctrine()->getManager();
         $suppr->remove($reponse);
         $suppr->flush();
