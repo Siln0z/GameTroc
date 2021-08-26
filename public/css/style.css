@@ -63,6 +63,10 @@ body{
     margin: 10px;
     font-weight: bold;
 }
+.customFormAvatar{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 .annonceCard{
     width: 400px !important;
     height: 450px !important;

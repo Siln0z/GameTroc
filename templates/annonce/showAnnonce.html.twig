@@ -19,7 +19,7 @@
 					{{ annonce.user.dateCreation | date('d/m/Y')}}
 				</p>
 				{% if is_granted('ROLE_ADMIN') %}
-					<a>
+					<a href="{{ path('ban', {id : annonce.user.id}) }}">
 						<i class="fas fa-ban"></i>
 					</a>
 				{% endif %}

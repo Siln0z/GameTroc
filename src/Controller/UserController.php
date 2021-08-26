@@ -22,6 +22,26 @@ class UserController extends AbstractController
             'user' => $user,
         ]);
     }
+    /**
+     * @Route("/ban/{id}", name="ban")
+     */
+    public function banUser(User $user)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $em = $this->getDoctrine()->getManager();
+
+        $user->switchBan();
+        $em->flush();
+
+        if ($user->getBanni() == 0) {
+            $this->addFlash('success', "Utilisateur débloqué !");
+        } else {
+            $this->addFlash('error', "Utilisateur bloqué !");
+        }
+
+        return $this->redirectToRoute('home');
+    }
+
 
     public function showProfile()
     {

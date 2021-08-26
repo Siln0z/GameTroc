@@ -26,14 +26,15 @@ class RegistrationFormType extends AbstractType
             ->add('email', TextType::class, [
                 'attr' => ['class' => 'uk-input']
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'Veuillez accepter les règles du site',
-                    ]),
-                ],
-            ])
+            // ->add('agreeTerms', CheckboxType::class, [
+            //     'mapped' => false,
+            //     'label' => 'Accepter les règles du site',
+            //     'constraints' => [
+            //         new IsTrue([
+            //             'message' => 'Veuillez accepter les règles du site',
+            //         ]),
+            //     ],
+            // ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -80,7 +81,7 @@ class RegistrationFormType extends AbstractType
                             'image/jpeg',
                             'image/png'
                         ],
-                        'mimeTypesMessage' => 'taille max : 1Mo en jpg ou png'
+                        'mimeTypesMessage' => 'taille max : 1Mo maximum en .jpg ou .png'
                     ])
                 ]
             ]);

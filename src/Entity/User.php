@@ -92,6 +92,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $reponses;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $banni;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
@@ -348,5 +353,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function getBanni(): ?bool
+    {
+        return $this->banni;
+    }
+
+    public function setBanni(bool $banni): self
+    {
+        $this->banni = $banni;
+
+        return $this;
+    }
+
+    public function switchBan()
+    {
+        $this->banni = $this->banni == 1 ? 0 : 1;
+        return;
     }
 }

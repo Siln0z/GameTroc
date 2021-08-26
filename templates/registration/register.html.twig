@@ -1,26 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register
+{% block title %}GameTroc - Inscription
 {% endblock %}
 
 {% block body %}
-	<h1>Register</h1>
-
-	{{ form_start(registrationForm) }}
-	{{ form_row(registrationForm.pseudo) }}
-	{{ form_row(registrationForm.plainPassword, {
+	<h1 class="uk-margin-left">Inscription</h1>
+	<div class="customForm">
+		{{ form_start(registrationForm) }}
+		{{ form_row(registrationForm.pseudo) }}
+		{{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-	{{ form_row(registrationForm.prenom) }}
-	{{ form_row(registrationForm.nom) }}
-	{{ form_row(registrationForm.adresse) }}
-	{{ form_row(registrationForm.cp) }}
-	{{ form_row(registrationForm.ville) }}
-	{{ form_row(registrationForm.avatar) }}
-	{{ form_row(registrationForm.email) }}
-	{{ form_row(registrationForm.agreeTerms) }}
+		{{ form_row(registrationForm.prenom) }}
+		{{ form_row(registrationForm.nom) }}
+		{{ form_row(registrationForm.adresse) }}
+		{{ form_row(registrationForm.cp) }}
+		{{ form_row(registrationForm.ville) }}
+		<div class="customFormAvatar">
+			{{ form_row(registrationForm.avatar) }}
+		</div>
+		{{ form_row(registrationForm.email) }}
+		{# {{ form_label(registrationForm.agreeTerms)}}
+				{{ form_row(registrationForm.agreeTerms) }} #}
 
-
-	<button type="submit" class="uk-button uk-button-secondary uk-margin-top">Register</button>
+	</div>
+	<button type="submit" class="uk-button uk-button-secondary uk-margin-top">S'incrire</button>
 	{{ form_end(registrationForm) }}
 {% endblock %}
