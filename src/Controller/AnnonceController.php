@@ -7,6 +7,7 @@ use App\Entity\Annonce;
 use App\Entity\Reponse;
 use App\Form\AnnonceType;
 use App\Form\ReponseType;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,10 +23,21 @@ class AnnonceController extends AbstractController
     /**
      * @Route("/", name="annonces")
      */
-    public function index()
+    public function index(Request $request, PaginatorInterface $paginator)
     {
-        $annonces = $this->getDoctrine()->getRepository(Annonce::class)->findBy([], ['dateCreation' => 'DESC']);
-        $reponses = $this->getDoctrine()->getRepository(Reponse::class)->findAll();
+        $donneesAnnonces = $this->getDoctrine()->getRepository(Annonce::class)->findBy([], ['dateCreation' => 'DESC']);
+        $annonces = $paginator->paginate(
+            $donneesAnnonces, //On passe les données
+            $request->query->getInt('page', 1), //Numéro de la page en cours, 1 par default
+            6 //Nb d'éléments par page
+        );
+
+        $donneesReponses = $this->getDoctrine()->getRepository(Annonce::class)->findBy([], ['dateCreation' => 'DESC']);
+        $reponses = $paginator->paginate(
+            $donneesReponses, //On passe les données
+            $request->query->getInt('page', 1), //Numéro de la page en cours, 1 par default
+            6 //Nb d'éléments par page
+        );
         return $this->render('annonce/index.html.twig', [
             'annonces' => $annonces,
             'reponses' => $reponses

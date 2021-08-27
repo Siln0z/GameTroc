@@ -29,6 +29,10 @@
 
 			{% endfor %}
 		</div>
+		<div class="uk-flex-center uk-margin-top" uk-margin>
+			<h3>
+				{{ knp_pagination_render(annonces)}}</h3>
+		</div>
 		<a class="uk-button uk-button-secondary uk-margin-top" href="{{ path('add_annonce') }}">POSTER UNE ANNONCE</a>
 	</div>
 

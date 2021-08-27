@@ -95,7 +95,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $banni;
+    private $banni = false;
 
     public function __construct()
     {

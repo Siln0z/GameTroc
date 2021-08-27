@@ -45,7 +45,7 @@ body{
     display: flex;
     justify-content: space-between;
 }
-.annonceCard,a{
+.annonceRecentes{
     text-decoration: none !important;
     display: block;
 
@@ -147,6 +147,9 @@ background-color: #f7921e;
     color: #e1550d;
 }
 .fa-edit{
+    color: #00948c;
+}
+.fa-check{
     color: #00948c;
 }
 .footer{

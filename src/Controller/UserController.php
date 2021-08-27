@@ -19,7 +19,7 @@ class UserController extends AbstractController
     {
         $user = $this->getDoctrine()->getRepository(User::class)->findAll();
         return $this->render('user/index.html.twig', [
-            'user' => $user,
+            'user' => $user
         ]);
     }
     /**
@@ -39,7 +39,7 @@ class UserController extends AbstractController
             $this->addFlash('error', "Utilisateur bloqué !");
         }
 
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('admin_users');
     }
 
 

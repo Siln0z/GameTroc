@@ -3,6 +3,7 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+{% if (app.user.banni == 0) %}
 	<div class="addAnnonceRegles">
 		<h1>Ajouter une annonce</h1>
 		<p>Merci de préciser les éléments suivant dans votre annonce :</p>
@@ -21,4 +22,6 @@
 	</div>
 
 	{{ form_end(formAnnonce) }}
-{% endblock %}
+{% else %}
+	<h3 class="uk-alert-danger ">Vous avez été bloqué pour non respect des règles de GameTroc.</br>
+	Vous ne pouvez ni poster d'annonces, ni y répondre.</h3>{% endif %}{% endblock %}

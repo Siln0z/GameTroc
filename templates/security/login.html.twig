@@ -17,7 +17,9 @@
 			</div>
 		{% endif %}
 
-		<h1 class="h3 mb-3 font-weight-normal uk-align-center ">Veuillez vous connecter</h1>
+		<h3 class="h3 mb-3 font-weight-normal uk-align-center uk-margin-left">Veuillez vous connecter ou vous inscrire
+			<a href="{{ path('app_register') }}">ICI</a>
+		</h3>
 		<div class="customForm">
 			<label for="inputPseudo">Pseudo</label>
 			<input type="text" value="{{ last_username }}" name="pseudo" id="inputPseudo" class="uk-input" autocomplete="username" required autofocus>
@@ -28,15 +30,15 @@
 			type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 			{#
-											Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-											See https://symfony.com/doc/current/security/remember_me.html
-									
-											<div class="checkbox mb-3">
-												<label>
-													<input type="checkbox" name="_remember_me"> Remember me
-												</label>
-											</div>
-													                    #}
+			Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+			See https://symfony.com/doc/current/security/remember_me.html
+			
+			<div class="checkbox mb-3">
+				<label>
+					<input type="checkbox" name="_remember_me"> Remember me
+				</label>
+			</div>
+										#}
 
 			<button class="uk-button uk-button-secondary uk-margin-top" type="submit">
 				Connexion

@@ -10,14 +10,16 @@
 			<a class="uk-button uk-button-secondary uk-margin-top uk-align-center btn" href="{{ path('add_annonce') }}">POSTER UNE ANNONCE</a>
 
 		{% else %}
-			<p class="texteBienvenue">Bonjour ! Bienvenue sur
-				<b>GameTroc</b>
-				! Vous pouvez consulter les annonces,<a href="{{path('app_login')}}">
-					connectez-vous</a>
-				si vous vouler en poster une ou y répondre.</p>
-			<p>Si vous n'avez pas de compte,<a href="{{path('app_register')}}">
-					inscrivez vous</a>!
-			</p>
+			<div>
+				<p class="texteBienvenue">Bonjour ! Bienvenue sur
+					<b>GameTroc</b>
+					! Vous pouvez consulter les annonces,<a style="display:span" href="{{path('app_login')}}">
+						connectez-vous</a>
+					si vous vouler en poster une ou y répondre.</p>
+				<p>Si vous n'avez pas de compte,<a href="{{path('app_register')}}">
+						inscrivez vous</a>!
+				</p>
+			</div>
 		{% endif %}
 
 		<h1>Annonces récentes</h1>

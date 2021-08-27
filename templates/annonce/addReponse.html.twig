@@ -3,6 +3,7 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+{% if (app.user.banni == 0) %}
 	<div>
 		{{ form_start(formReponse, {'attr':{'novalidate':'novalidate'}}) }}
 		{{ form_label(formReponse.texte) }}
@@ -11,4 +12,6 @@
 		{{ form_end(formReponse) }}
 
 	</div>
-{% endblock %}
+{% else %}
+	<h3 class="uk-alert-danger ">Vous avez été bloqué pour non respect des règles de GameTroc.</br>
+	Vous ne pouvez ni poster d'annonces, ni y répondre.</h3>{% endif %}{% endblock %}
