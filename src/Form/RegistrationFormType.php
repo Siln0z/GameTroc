@@ -26,15 +26,15 @@ class RegistrationFormType extends AbstractType
             ->add('email', TextType::class, [
                 'attr' => ['class' => 'uk-input']
             ])
-            // ->add('agreeTerms', CheckboxType::class, [
-            //     'mapped' => false,
-            //     'label' => 'Accepter les règles du site',
-            //     'constraints' => [
-            //         new IsTrue([
-            //             'message' => 'Veuillez accepter les règles du site',
-            //         ]),
-            //     ],
-            // ])
+            ->add('agreeTerms', CheckboxType::class, [
+                'mapped' => false,
+                'label' => 'lu la charte ici',
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'Veuillez accepter les règles du site',
+                    ]),
+                ],
+            ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller

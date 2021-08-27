@@ -55,7 +55,8 @@
 				<div class="section-moderation">
 					{% if (app.user == annonce.user) or (is_granted('ROLE_ADMIN')) %}
 						<a href=" {{ path('edit_annonce', {id : annonce.id} ) }}">
-							<i class="fas fa-edit"></i>
+							<i class="fas fa-edit">
+								Editer l'annonce</i>
 						</a>
 					{% endif %}
 					{% if is_granted('ROLE_ADMIN') %}
@@ -98,7 +99,7 @@
 		{% endfor %}
 		<div class="uk-flex-center uk-margin-top" uk-margin>
 			<h3>
-				{{ knp_pagination_render(Reponses)}}</h3>
+				{{ knp_pagination_render(reponses)}}</h3>
 		</div>
 
 		<div class="btnSousAnnonce">

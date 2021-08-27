@@ -20,10 +20,15 @@
 			{{ form_row(registrationForm.avatar) }}
 		</div>
 		{{ form_row(registrationForm.email) }}
-		{# {{ form_label(registrationForm.agreeTerms)}}
-				{{ form_row(registrationForm.agreeTerms) }} #}
-
 	</div>
+	<div class="customForm">
+		<p>Accepter la charte de GameTroc<br/>
+			Cochez la case après avoir
+			<a href="{{path('rules')}}">
+				{{ form_row(registrationForm.agreeTerms) }}</a>
+		</p>
+	</div>
+
 	<button type="submit" class="uk-button uk-button-secondary uk-margin-top">S'incrire</button>
 	{{ form_end(registrationForm) }}
 {% endblock %}

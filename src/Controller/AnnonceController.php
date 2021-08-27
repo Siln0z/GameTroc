@@ -32,12 +32,8 @@ class AnnonceController extends AbstractController
             6 //Nb d'éléments par page
         );
 
-        $donneesReponses = $this->getDoctrine()->getRepository(Annonce::class)->findBy([], ['dateCreation' => 'DESC']);
-        $reponses = $paginator->paginate(
-            $donneesReponses, //On passe les données
-            $request->query->getInt('page', 1), //Numéro de la page en cours, 1 par default
-            6 //Nb d'éléments par page
-        );
+        $reponses = $this->getDoctrine()->getRepository(Annonce::class)->findBy([], ['dateCreation' => 'DESC']);
+
         return $this->render('annonce/index.html.twig', [
             'annonces' => $annonces,
             'reponses' => $reponses
@@ -132,16 +128,16 @@ class AnnonceController extends AbstractController
     /**
      * @Route("/showannonce/{id}", name="show_annonce", methods="GET")
      */
-    public function showAnnonce(Annonce $annonce, Request $request): Response
+    public function showAnnonce(Annonce $annonce, Request $request, PaginatorInterface $paginator): Response
     {
         $user = $this->getDoctrine()->getRepository(User::class)->findAll($annonce->getUser());
-        $reponses = $this->getDoctrine()->getRepository(Reponse::class)->findBy(['annonce' => $annonce->getId()]);
 
-        // $form = $this->createForm(ReponseType::class, $reponse);
-        // $form->handleRequest($request);
-        // $reponse->setReponse($this->getReponse());
-        // $reponses = $form->getData();
-
+        $donneesReponses = $this->getDoctrine()->getRepository(Reponse::class)->findBy(['annonce' => $annonce->getId()]);
+        $reponses = $paginator->paginate(
+            $donneesReponses, //On passe les données
+            $request->query->getInt('page', 1), //Numéro de la page en cours, 1 par default
+            6 //Nb d'éléments par page
+        );
 
         return $this->render("annonce/showAnnonce.html.twig", [
             'annonce' => $annonce,

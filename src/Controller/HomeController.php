@@ -31,4 +31,12 @@ class HomeController extends AbstractController
             'annonces' => $annonces
         ]);
     }
+    /**
+     * @Route("/rules", name="rules")
+     */
+    public function rules()
+    {
+
+        return $this->render('regles.html.twig', []);
+    }
 }
