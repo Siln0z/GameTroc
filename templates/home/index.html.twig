@@ -5,10 +5,11 @@
 
 {% block body %}
 	<div class="annoncesListCenter">
+		<p>Il y a actuellement
+			{{ nbAnnonces }}
+			annonces sur le site.</p>
 		{% if is_granted('ROLE_USER') %}
-
-			<a class="uk-button uk-button-secondary uk-margin-top uk-align-center btn" href="{{ path('add_annonce') }}">POSTER UNE ANNONCE</a>
-
+			<a class="uk-button uk-button-secondary uk-margin-top" href="{{ path('add_annonce') }}">POSTER UNE ANNONCE</a>
 		{% else %}
 			<div>
 				<p class="texteBienvenue">Bonjour ! Bienvenue sur
@@ -40,5 +41,5 @@
 				</a>
 			{% endfor %}
 		</div>
-	</div>
-{% endblock %}
+	</p>
+</div>{% endblock %}

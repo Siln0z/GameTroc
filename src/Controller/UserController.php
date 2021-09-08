@@ -18,10 +18,40 @@ class UserController extends AbstractController
     public function index(): Response
     {
         $user = $this->getDoctrine()->getRepository(User::class)->findAll();
+
         return $this->render('user/index.html.twig', [
             'user' => $user
         ]);
     }
+    // /**
+    //  * @Route("/edituser", name="edit_user")
+    //  */
+    // public function editUser(Request $request, ObjectManager $manager): Response
+    // {
+    //     $user = $this->getUser();
+
+    //     $form = $this->createForm(RegistrationFormType::class, $user);
+
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         //dump($form->getData());exit;
+    //         if ($user->getAvatar() !== null) {
+    //             $file = $user->getAvatar();
+    //             $user->setAvatarFile($file);
+    //         }
+
+    //         $manager->persist($user);
+    //         $manager->flush();
+
+    //         return $this->redirectToRoute('user');
+    //     }
+
+    //     return $this->render('user/profileEdit.html.twig', [
+    //         'form' => $form->createView()
+    //     ]);
+    // }
+
     /**
      * @Route("/ban/{id}", name="ban")
      */

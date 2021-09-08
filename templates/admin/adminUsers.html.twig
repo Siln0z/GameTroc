@@ -6,26 +6,46 @@
 {% block body %}
 	<div class="example-wrapper">
 		<h1>Liste des utilisateurs</h1>
-
-		{% for user in users %}
-			<ul>
-				<div>
-					<img class="" width="50" height="50" src="{{ asset('upload/'~ user.avatar) }}">
-					{{ user.pseudo }}
-					{% if ( user.banni == 0) %}
-						<a href="{{ path('ban', {id : user.id}) }}">
-							<i class="fas fa-ban"></i>
-						</a>
-					{% else %}
-						<a href="{{ path('ban', {id : user.id}) }}">
-							<i class="fas fa-check"></i>
-						</a>
-					{% endif %}
-				</div>
-
-
-			</ul>
-		{% endfor %}
-
+		<table class='uk-table uk-table-hover uk-table-divider'>
+			<thead>
+				<tr>
+					{# <th>Role</th> #}
+					<th>Utilisateur</th>
+					<th>Banni</th>
+					<th>Nb annonce</th>
+					{# <th>Nb réponse</th> #}
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in nbAnnoncesParUser %}
+					<tr>
+						<td>
+							<div>
+								<img class="" width="50" height="50" src="{{ asset('upload/'~ user.avatar) }}">&nbsp;{{ user.pseudo }}
+							</div>
+						</td>
+						{# <td>{{ user.roles }}</td> #}
+						<td>
+							{% if (user.roles != ['ROLE_ADMIN']) %}
+								{% if ( user.banni == 0) %}
+									<a href="{{ path('ban', {id : user.id}) }}">
+										<i class="fas fa-lock-open"></i>&nbsp;bannir
+									</a>
+								{% else %}
+									<a href="{{ path('ban', {id : user.id}) }}">
+										<i class="fas fa-lock"></i>&nbsp;débannir
+									</a>
+								{% endif %}
+							{% else %}
+								<p>
+									<i class="fas fa-crown"></i>&nbsp;admin</p>
+							{% endif %}
+						</td>
+						<td>{{ user.nbAnnonces }}&nbsp;annonces postées</td>
+						{# <td>{{ user.nbReponses }}&nbsp;réponses postées</td> #}
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 	</div>
 {% endblock %}

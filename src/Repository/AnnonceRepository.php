@@ -2,9 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\Annonce;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Annonce|null find($id, $lockMode = null, $lockVersion = null)
@@ -31,25 +32,30 @@ class AnnonceRepository extends ServiceEntityRepository
 
     public function findTroisDernieresAnnonces()
     {
-        // $now = new \DateTime();
         return $this->createQueryBuilder('a')
-            // ->andWhere('a.dateCreation > :now')
-            // ->setParameter('now', $now->format('Y-m-d'))
             ->orderBy('a.dateCreation', 'DESC')
             ->setMaxResults(3)
             ->getQuery()
             ->getResult();
     }
 
-    /*
-    public function findOneBySomeField($value): ?Annonce
+    public function countAnnonces()
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
+            ->select('count(a.id)')
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getSingleScalarResult();
     }
-    */
+
+    public function countAnnoncesByUser()
+    {
+        return $this->getEntityManager()->createQueryBuilder()
+            ->select('COUNT(a) as nbAnnonces, u.pseudo, u.id, u.avatar, u.banni, u.roles')
+            ->from('App\Entity\Annonce', 'a')
+            ->from('App\Entity\User', 'u')
+            ->where('a.user = u.id')
+            ->groupBy('u.id')
+            ->getQuery()
+            ->getResult();
+    }
 }

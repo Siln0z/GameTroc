@@ -13,7 +13,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -21,28 +23,45 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('pseudo', TextType::class, [
-                'attr' => ['class' => 'uk-input']
+                'attr' => ['class' => 'uk-input'],
+                'label' => 'Pseudo *',
+                'required' => true
             ])
-            ->add('email', TextType::class, [
-                'attr' => ['class' => 'uk-input']
+            ->add('email', EmailType::class, [
+                'attr' => ['class' => 'uk-input'],
+                'label' => 'Adresse Mail *',
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
-                'label' => 'lire la charte ici',
+                'label' => "J'accepte la charte de GameTroc",
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'Veuillez accepter les règles du site',
+                        'message' => 'Veuillez accepter la charte du site',
                     ]),
                 ],
             ])
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'mapped' => false,
-                'attr' => [
-                    'autocomplete' => 'new-password',
-                    'class' => 'uk-input'
+            ->add('plainPassword', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les 2 mots de passe ne correspondent pas !',
+                'first_options'  => [
+                    'label' => 'Mot de passe *',
+                    'attr' => [
+                        'autocomplete' => 'new-password',
+                        'class' => 'uk-input'
+                    ],
                 ],
+                'second_options' => [
+                    'label' => 'Répétez le mot de passe *',
+                    'attr' => [
+                        'autocomplete' => 'new-password',
+                        'class' => 'uk-input'
+                    ],
+                ],
+                'mapped' => false,
+                // 'attr' => [
+                //     'autocomplete' => 'new-password',
+                //     'class' => 'uk-input'
+                // ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer un mot de passe',
@@ -53,23 +72,7 @@ class RegistrationFormType extends AbstractType
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
-                ],
-            ])
-            ->add('prenom', TextType::class, [
-                'attr' => ['class' => 'uk-input']
-            ])
-            ->add('nom', TextType::class, [
-                'attr' => ['class' => 'uk-input']
-            ])
-            ->add('adresse', TextType::class, [
-                'attr' => ['class' => 'uk-input']
-            ])
-            ->add('cp', TextType::class, [
-                'label_format' => 'Code postal',
-                'attr' => ['class' => 'uk-input']
-            ])
-            ->add('ville', TextType::class, [
-                'attr' => ['class' => 'uk-input']
+                ]
             ])
             ->add('avatar', FileType::class, [
                 'mapped' => false,
@@ -85,6 +88,28 @@ class RegistrationFormType extends AbstractType
                     ])
                 ]
             ]);
+        // ->add('prenom', TextType::class, [
+        //     'attr' => ['class' => 'uk-input'],
+        //     'required' => false
+        // ])
+        // ->add('nom', TextType::class, [
+        //     'attr' => ['class' => 'uk-input'],
+        //     'required' => false
+        // ])
+        // ->add('adresse', TextType::class, [
+        //     'attr' => ['class' => 'uk-input'],
+        //     'required' => false
+        // ])
+        // ->add('cp', TextType::class, [
+        //     'label_format' => 'Code postal',
+        //     'attr' => ['class' => 'uk-input'],
+        //     'required' => false
+        // ])
+        // ->add('ville', TextType::class, [
+        //     'attr' => ['class' => 'uk-input'],
+        //     'required' => false
+        // ])
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

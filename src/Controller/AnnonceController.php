@@ -31,12 +31,14 @@ class AnnonceController extends AbstractController
             $request->query->getInt('page', 1), //Numéro de la page en cours, 1 par default
             6 //Nb d'éléments par page
         );
-
+        $nbAnnonces = $this->getDoctrine()->getRepository(Annonce::class)->countAnnonces();
         $reponses = $this->getDoctrine()->getRepository(Annonce::class)->findBy([], ['dateCreation' => 'DESC']);
 
         return $this->render('annonce/index.html.twig', [
             'annonces' => $annonces,
-            'reponses' => $reponses
+            'reponses' => $reponses,
+            'nbAnnonces' => $nbAnnonces
+
         ]);
     }
     /**
@@ -130,7 +132,7 @@ class AnnonceController extends AbstractController
      */
     public function showAnnonce(Annonce $annonce, Request $request, PaginatorInterface $paginator): Response
     {
-        $user = $this->getDoctrine()->getRepository(User::class)->findAll($annonce->getUser());
+        $user = $annonce->getUser();
 
         $donneesReponses = $this->getDoctrine()->getRepository(Reponse::class)->findBy(['annonce' => $annonce->getId()]);
         $reponses = $paginator->paginate(
@@ -142,8 +144,7 @@ class AnnonceController extends AbstractController
         return $this->render("annonce/showAnnonce.html.twig", [
             'annonce' => $annonce,
             'user' => $user,
-            'reponses' => $reponses
-
+            'reponses' => $reponses,
         ]);
     }
     /**

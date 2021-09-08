@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Annonce;
+use App\Entity\Reponse;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,10 +32,14 @@ class AdminController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $users = $userRepository->findAll();
+
+        $nbAnnoncesParUser = $this->getDoctrine()->getRepository(Annonce::class)->countAnnoncesByUser();
+        // $nbReponsesParUser = $this->getDoctrine()->getRepository(Reponse::class)->countReponsesByUser();
+        // dd($nbReponsesParUser);
 
         return $this->render('admin/adminUsers.html.twig', [
-            'users' => $users,
+            'nbAnnoncesParUser' => $nbAnnoncesParUser,
+
         ]);
     }
 }

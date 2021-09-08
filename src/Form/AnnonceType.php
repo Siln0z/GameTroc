@@ -19,7 +19,7 @@ class AnnonceType extends AbstractType
     {
         $builder
             ->add('titre', TextType::class, [
-                'label_format' => 'Titre',
+                'label_format' => 'Titre *',
                 'attr' => ['class' => 'uk-input']
             ])
             ->add('texte', TextareaType::class, [

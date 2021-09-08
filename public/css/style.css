@@ -140,7 +140,7 @@ background-color: #f7921e;
     width: 100%;
     justify-content: space-between;
 }
-.fa-ban{
+.fa-lock{
     color: #e1550d;  
 }
 .fa-trash-alt{
@@ -149,8 +149,11 @@ background-color: #f7921e;
 .fa-edit{
     color: #00948c;
 }
-.fa-check{
+.fa-lock-open{
     color: #00948c;
+}
+.fa-crown{
+    color: #c5bd26;
 }
 
 .footer{

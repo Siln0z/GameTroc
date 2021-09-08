@@ -18,17 +18,12 @@ class HomeController extends AbstractController
      */
     public function index(AnnonceRepository $annonceRepository): Response
     {
-        // $annonces = $this->getDoctrine()->getManager()->createQueryBuilder(
-        //     'SELECT a 
-        //     FROM App\Entity\Annonce a 
-        //     ORDER BY a.dateCreation 
-        //     DESC'
-        // )->setMaxResults(3)->getResult();
-
         $annonces = $annonceRepository->findTroisDernieresAnnonces();
+        $nbAnnonces = $this->getDoctrine()->getRepository(Annonce::class)->countAnnonces();
 
         return $this->render('home/index.html.twig', [
-            'annonces' => $annonces
+            'annonces' => $annonces,
+            'nbAnnonces' => $nbAnnonces
         ]);
     }
     /**
