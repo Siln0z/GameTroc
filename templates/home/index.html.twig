@@ -5,9 +5,6 @@
 
 {% block body %}
 	<div class="annoncesListCenter">
-		<p>Il y a actuellement
-			{{ nbAnnonces }}
-			annonces sur le site.</p>
 		{% if is_granted('ROLE_USER') %}
 			<a class="uk-button uk-button-secondary uk-margin-top" href="{{ path('add_annonce') }}">POSTER UNE ANNONCE</a>
 		{% else %}
@@ -25,6 +22,10 @@
 				</p>
 			</div>
 		{% endif %}
+		<p>Il y a actuellement
+			{{ nbAnnonces }}
+			annonces sur le site.</p>
+
 
 		<h1>Annonces récentes</h1>
 		<div class="annonceRecentes" uk-grid>
