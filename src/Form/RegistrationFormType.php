@@ -75,16 +75,17 @@ class RegistrationFormType extends AbstractType
                 ]
             ])
             ->add('avatar', FileType::class, [
+                'attr' => ['class' => 'boutonUpload'],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024K',
+                        'maxSize' => '5000K',
                         'mimeTypes' => [
                             'image/jpeg',
                             'image/png'
                         ],
-                        'mimeTypesMessage' => 'taille max : 1Mo maximum en .jpg ou .png'
+                        'mimeTypesMessage' => 'taille max : 5Mo maximum en .jpg ou .png'
                     ])
                 ]
             ]);

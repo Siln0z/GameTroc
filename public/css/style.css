@@ -95,6 +95,7 @@ body{
     max-width: 220px;
     max-height: 38px;
 }
+
 .uk-button-secondary{
     background-color: #00948c ;
     margin : 10px;
@@ -127,12 +128,28 @@ body{
 .customFormAvatar{
     margin-top: 20px;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.boutonUpload{
+    padding-left: 40px;
 }
 .annonceCard{
     width: 400px;
     height: 450px;
     margin-left: auto;
     margin-right: auto;
+    text-decoration: none;
+}
+.annonceCard a>p{
+text-decoration: none !important;
+}
+.uk-text-lead{
+    text-decoration: none !important;
+}
+.uk-text-default{
+    text-decoration: none !important;
+    color: black;
 }
 .userCard{
     padding-top: 20px;

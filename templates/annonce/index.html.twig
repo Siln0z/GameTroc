@@ -15,7 +15,7 @@
 						<img class="imageAnnonce" src="{{ asset('upload/'~ annonce.photo) }}" alt="photo du jeu">
 						<p class="uk-margin-remove uk-text-lead">{{ annonce.titre }}</p>
 						<p class="userCard uk-text-default"><img class="" width="50" height="50" src="{{ asset('upload/'~ annonce.user.avatar) }}">
-							{{ annonce.user }}, le :
+							<b>{{ annonce.user }}</b>, le :
 							{{ annonce.dateCreation | date('d/m/Y') }}</p>
 					</a>
 					{% if is_granted('ROLE_ADMIN') %}

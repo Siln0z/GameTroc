@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Entity\Annonce;
 use App\Entity\Reponse;
 use App\Form\AnnonceType;
@@ -37,7 +36,7 @@ class AnnonceController extends AbstractController
         return $this->render('annonce/index.html.twig', [
             'annonces' => $annonces,
             'reponses' => $reponses,
-            'nbAnnonces' => $nbAnnonces
+            'nbAnnonces' => $nbAnnonces,
 
         ]);
     }
@@ -94,9 +93,8 @@ class AnnonceController extends AbstractController
     }
     /**
      * @Route("/addreponse/{id}", name="add_reponse")
-     * 
      */
-    public function addReponse(Annonce $annonce, Request $request)
+    public function addReponse(Annonce $annonce = NULL, Request $request)
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
         $reponse = new Reponse();

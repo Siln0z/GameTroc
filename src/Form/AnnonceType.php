@@ -33,12 +33,12 @@ class AnnonceType extends AbstractType
                 'required' => false,
                 'constraints' => [
                     new File([
-                        'maxSize' => '1024K',
+                        'maxSize' => '5000K',
                         'mimeTypes' => [
                             'image/jpeg',
                             'image/png'
                         ],
-                        'mimeTypesMessage' => 'taille max : 1Mo en format .jpg ou .png'
+                        'mimeTypesMessage' => 'taille max : 5Mo en format .jpg ou .png'
                     ])
                 ]
             ])

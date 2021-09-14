@@ -18,14 +18,18 @@
 					{{ annonce.user.dateCreation | date('d/m/Y')}}
 				</p>
 				{% if is_granted('ROLE_ADMIN') %}
-					{% if ( annonce.user.banni == 0) %}
-						<a href="{{ path('ban', {id : annonce.user.id}) }}">
-							<i class="fas fa-lock-open"></i>
-						</a>
+					{% if (annonce.user.id != 1) %}
+						{% if ( annonce.user.banni == 0) %}
+							<a href="{{ path('ban', {id : annonce.user.id}) }}">
+								<i class="fas fa-lock-open"></i>
+							</a>
+						{% else %}
+							<a href="{{ path('ban', {id : annonce.user.id}) }}">
+								<i class="fas fa-lock"></i>
+							</a>
+						{% endif %}
 					{% else %}
-						<a href="{{ path('ban', {id : annonce.user.id}) }}">
-							<i class="fas fa-lock"></i>
-						</a>
+						<i class="fas fa-crown"></i>
 					{% endif %}
 				{% endif %}
 			</div>
@@ -57,6 +61,7 @@
 								Editer l'annonce</i>
 						</a>
 					{% endif %}
+
 					{% if is_granted('ROLE_ADMIN') %}
 						<a href="{{ path('suppr_annonce', {id : annonce.id}) }}">
 							<i class="fas fa-trash-alt"></i>
@@ -93,6 +98,7 @@
 							</a>
 						</section>
 					{% endif %}
+
 				</section>
 			</section>
 		{% endfor %}
